@@ -1,14 +1,13 @@
 package com.devsuperior.dslist.domain.model.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 @Entity
 @Table(name = "tb_game_list")
 public class GameList {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
