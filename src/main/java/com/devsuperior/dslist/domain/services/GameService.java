@@ -3,6 +3,7 @@ package com.devsuperior.dslist.domain.services;
 import com.devsuperior.dslist.application.dto.GameDTO;
 import com.devsuperior.dslist.application.dto.GameMinDTO;
 import com.devsuperior.dslist.domain.model.entities.Game;
+import com.devsuperior.dslist.domain.projections.GameMinProjection;
 import com.devsuperior.dslist.infrastructure.repository.GameRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -33,4 +34,10 @@ public class GameService {
             throw   new Exception("Id não encontrado ou não existe");
         }
     }
+    public List<GameMinDTO> findByList(long listId) {
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+
+        return result.stream().map(GameMinDTO::new).toList();
+    }
+
 }
