@@ -6,6 +6,7 @@ import com.devsuperior.dslist.infrastructure.repository.GameRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameService {
@@ -19,5 +20,9 @@ public class GameService {
         List<Game> result = gameRepository.findAll();
 
         return result.stream().map(GameMinDTO::new).toList();
+    }
+    public List<GameMinDTO> findById(long id){
+        Optional<Game> result = gameRepository.findById(id);
+        return result.map(GameMinDTO::new).map(List::of).orElse(List.of());
     }
 }
